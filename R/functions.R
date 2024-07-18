@@ -1,6 +1,5 @@
 # Conversion Tool
 
-library(stringr)
 
 #-----------------------------------------------------------------------
 
@@ -88,9 +87,9 @@ strconversion <- function(old, newunit="meter", returnstring=FALSE) {
                   201.168,1609.344,4828.032,0.01,1,1000)
   df <- data.frame(unitnames, unitabb, conversion)
 
-  valuestr <- str_extract(old,"\\d+\\.?\\d*")
-  value <- as.numeric(str_extract(old,"\\d+\\.?\\d*"))
-  oldunit <- str_replace(old, valuestr, "")
+  valuestr <- stringr::str_extract(old,"\\d+\\.?\\d*")
+  value <- as.numeric(stringr::str_extract(old,"\\d+\\.?\\d*"))
+  oldunit <- stringr::str_replace(old, valuestr, "")
 
   if (oldunit %in% df$unitabb) {
     oldunit <- df$unitnames[which(unitabb == oldunit)]
