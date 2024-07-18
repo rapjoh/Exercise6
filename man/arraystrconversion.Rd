@@ -17,9 +17,10 @@ arraystrconversion(old, newunit = "meter", returnstring = FALSE)
 Converted array of values
 }
 \description{
-Convert an array of strings with measurements of length
+Possible units: "twip", "thou", "inch", "hand", "foot", "yard", "chain", "furlong", "mile", "league", "millimeter", "centimeter", "meter", "kilometer" or "twip", "th", "in", "hh", "ft", "yd", "ch", "fur", "mi", "lea", "mm", "cm", "m", "km"
+Plurals "-s" and spaces in the string will be ignored
 }
 \examples{
 arraystrconversion(c("5yd","6ft"),"mi")
-arraystrconversion(c("10miles","3foot","2chain"),"yard",TRUE)
+arraystrconversion(c("10miles","3 mile","2chain"),"yard",TRUE)
 }

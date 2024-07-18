@@ -9,7 +9,7 @@ arrayconversion(value, oldunit, newunit = "meter")
 \arguments{
 \item{value}{Array of values to convert}
 
-\item{oldunit}{Unit of the value to convert}
+\item{oldunit}{Unit of the value to convert ("twip", "thou", "inch", "hand", "foot", "yard", "chain", "furlong", "mile", "league", "millimeter", "centimeter", "meter", "kilometer" or "twip", "th", "in", "hh", "ft", "yd", "ch", "fur", "mi", "lea", "mm", "cm", "m", "km")}
 
 \item{newunit}{Unit of return value, default is meters}
 }
@@ -17,7 +17,7 @@ arrayconversion(value, oldunit, newunit = "meter")
 Converted array of values
 }
 \description{
-Convert an array of measurements of length
+Possible units: "twip", "thou", "inch", "hand", "foot", "yard", "chain", "furlong", "mile", "league", "millimeter", "centimeter", "meter", "kilometer" or "twip", "th", "in", "hh", "ft", "yd", "ch", "fur", "mi", "lea", "mm", "cm", "m", "km"
 }
 \examples{
 arrayconversion(c(5,10,15),"yd","mi")

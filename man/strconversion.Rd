@@ -17,7 +17,8 @@ strconversion(old, newunit = "meter", returnstring = FALSE)
 Converted value
 }
 \description{
-Convert a string with measurements of length
+Possible units: "twip", "thou", "inch", "hand", "foot", "yard", "chain", "furlong", "mile", "league", "millimeter", "centimeter", "meter", "kilometer" or "twip", "th", "in", "hh", "ft", "yd", "ch", "fur", "mi", "lea", "mm", "cm", "m", "km"
+Plurals "-s" and spaces in the string will be ignored
 }
 \examples{
 strconversion("5yd","mi")

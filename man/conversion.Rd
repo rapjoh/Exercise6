@@ -17,7 +17,7 @@ conversion(value, oldunit, newunit = "meter")
 Converted value
 }
 \description{
-Convert multiple measurements of length
+Possible units: "twip", "thou", "inch", "hand", "foot", "yard", "chain", "furlong", "mile", "league", "millimeter", "centimeter", "meter", "kilometer" or "twip", "th", "in", "hh", "ft", "yd", "ch", "fur", "mi", "lea", "mm", "cm", "m", "km"
 }
 \examples{
 conversion(5,"yd","mi")
