@@ -1,0 +1,140 @@
+# Conversion Tool
+
+library(stringr)
+
+#-----------------------------------------------------------------------
+
+# Conversion can convert multiple measurements of length, input a numeric, the
+# old and the new unit.
+# Per default, values will be converted to meters.
+
+#' Convert multiple measurements of length
+#' @param value Value to convert
+#' @param oldunit Unit of the value to convert
+#' @param newunit Unit of return value, default is meters
+#' @return Converted value
+#' @export
+#' @examples
+#' conversion(5,"yd","mi")
+#' conversion(10,"yard")
+conversion <- function(value, oldunit, newunit="meter") {
+  unitnames <- c("twip", "thou", "inch", "hand", "foot", "yard", "chain",
+                 "furlong", "miles", "league", "centimeter", "meter", "kilometer")
+  unitabb <- c("twip", "th", "in", "hh", "ft", "yd", "ch",
+               "fur", "mi", "lea", "cm", "m", "km")
+  conversion <- c(0.0000176389, 0.0000254, 0.0254, 0.1016, 0.3048, 0.9144, 20.1168,
+                  201.168,1609.344,4828.032,0.01,1,1000)
+  df <- data.frame(unitnames, unitabb, conversion)
+  if (oldunit %in% df$unitabb) {
+    oldunit <- df$unitnames[which(unitabb == oldunit)]
+  }
+  if (newunit %in% df$unitabb) {
+    newunit <- df$unitnames[which(unitabb == newunit)]
+  }
+  if (oldunit %in% df$unitnames && newunit %in% df$unitnames) {
+    meter = value * df$conversion[which(unitnames == oldunit)]
+    new = meter / df$conversion[which(unitnames == newunit)]
+    return(new)
+  } else {
+    return("Unknown Unit")
+  }
+}
+
+#-----------------------------------------------------------------------
+
+# Arrayconversion can convert multiple measurements of length, input an array of numeric,
+# the old and the new unit.
+# Per default, values will be converted to meters.
+
+#' Convert an array of measurements of length
+#' @param value Array of values to convert
+#' @param oldunit Unit of the value to convert
+#' @param newunit Unit of return value, default is meters
+#' @return Converted array of values
+#' @export
+#' @examples
+#' arrayconversion(c(5,10,15),"yd","mi")
+#' arrayconversion(c(5,10,15),"yard")
+arrayconversion <- function(value, oldunit, newunit="meter"){
+  new <- c()
+  for (x in value){
+    new <- c(new, conversion(x,oldunit, newunit))
+  }
+  return(new)
+}
+
+#-----------------------------------------------------------------------
+
+# Strconversion can convert multiple measurements of length, input a
+# string with the Value and unit and choose if the output should be a numeric
+# or a string with value and unit as well.
+# Per default, values will be converted to meters.
+
+#' Convert a string with measurements of length
+#' @param old String of values with unit at the end
+#' @param newunit Unit of return value, default is meters
+#' @param returnstring TRUE:return is string with unit name at the end, FALSE: return is numeric data
+#' @return Converted value
+#' @export
+#' @examples
+#' strconversion("5yd","mi")
+#' strconversion("10miles","yard",TRUE)
+strconversion <- function(old, newunit="meter", returnstring=FALSE) {
+  unitnames <- c("twip", "thou", "inch", "hand", "foot", "yard", "chain",
+                 "furlong", "miles", "league", "centimeter", "meter", "kilometer")
+  unitabb <- c("twip", "th", "in", "hh", "ft", "yd", "ch",
+               "fur", "mi", "lea", "cm", "m", "km")
+  conversion <- c(0.0000176389, 0.0000254, 0.0254, 0.1016, 0.3048, 0.9144, 20.1168,
+                  201.168,1609.344,4828.032,0.01,1,1000)
+  df <- data.frame(unitnames, unitabb, conversion)
+
+  valuestr <- str_extract(old,"\\d+\\.?\\d*")
+  value <- as.numeric(str_extract(old,"\\d+\\.?\\d*"))
+  oldunit <- str_replace(old, valuestr, "")
+
+  if (oldunit %in% df$unitabb) {
+    oldunit <- df$unitnames[which(unitabb == oldunit)]
+  }
+  if (newunit %in% df$unitabb) {
+    newunit <- df$unitnames[which(unitabb == newunit)]
+  }
+
+  if (oldunit %in% df$unitnames && newunit %in% df$unitnames) {
+    meter = value * df$conversion[which(unitnames == oldunit)]
+    new = meter / df$conversion[which(unitnames == newunit)]
+    if (returnstring==TRUE) {
+      return(paste(new,newunit))
+    } else {
+      return(new)
+    }
+  } else {
+    return("Unknown Unit")
+  }
+}
+
+#-----------------------------------------------------------------------
+
+# Arraystrconversion can convert multiple measurements of length, input an
+# Array of strings with the Value and unit and choose if the output should be a numeric
+# or a string with value and unit as well.
+# Per default, values will be converted to meters.
+
+#' Convert an array of strings with measurements of length
+#' @param old Array of strings with values with unit at the end
+#' @param newunit Unit of return value, default is meters
+#' @param returnstring TRUE:return is string with unit name at the end, FALSE: return is numeric data
+#' @return Converted array of values
+#' @export
+#' @examples
+#' arraystrconversion(c("5yd","6ft"),"mi")
+#' arraystrconversion(c("10miles","3foot","2chain"),"yard",TRUE)
+arraystrconversion <- function(old, newunit="meter", returnstring=FALSE){
+new <- c()
+  for (x in old){
+    new <- c(new, strconversion(x,newunit,returnstring))
+  }
+  return(new)
+}
+
+#-----------------------------------------------------------------------
+

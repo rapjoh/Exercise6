@@ -1,0 +1,19 @@
+Package: Exercise6
+Type: Package
+Title: Converting measurements of length
+Version: 0.1.0
+Author: Raphael John (12548296)
+Maintainer: Raphael John <r.john@campus.lmu.de>
+Description: Converting measurements of length (metric and imperial). 
+  Input can be given in differnt forms, and arrays can also be converted.
+  Conversion - input a numeric, the old and the new unit.
+  Arrayconversion - input an array of numerics, the old and the new unit.
+  Strconversion - input a string with the value and unit and choose if the 
+  output should be a numeric or a string with value and unit as well.
+  Arraystrconversion - input an array of Strings with the Value and unit and 
+  choose if the output should be a numeric or a string with value and unit as well.
+License: 
+Encoding: UTF-8
+LazyData: true
+Imports: stringr
+RoxygenNote: 7.3.2
