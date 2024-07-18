@@ -2,19 +2,19 @@
 % Please edit documentation in R/functions.R
 \name{arrayconversion}
 \alias{arrayconversion}
-\title{Convert an array of measurements of length}
+\title{Convert an array or vector of measurements of length}
 \usage{
 arrayconversion(value, oldunit, newunit = "meter")
 }
 \arguments{
-\item{value}{Array of values to convert}
+\item{value}{Array/Vector of values to convert}
 
 \item{oldunit}{Unit of the value to convert ("twip", "thou", "inch", "hand", "foot", "yard", "chain", "furlong", "mile", "league", "millimeter", "centimeter", "meter", "kilometer" or "twip", "th", "in", "hh", "ft", "yd", "ch", "fur", "mi", "lea", "mm", "cm", "m", "km")}
 
 \item{newunit}{Unit of return value, default is meters}
 }
 \value{
-Converted array of values
+Converted array/vector of values
 }
 \description{
 Possible units: "twip", "thou", "inch", "hand", "foot", "yard", "chain", "furlong", "mile", "league", "millimeter", "centimeter", "meter", "kilometer" or "twip", "th", "in", "hh", "ft", "yd", "ch", "fur", "mi", "lea", "mm", "cm", "m", "km"

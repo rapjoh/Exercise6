@@ -2,23 +2,23 @@
 % Please edit documentation in R/functions.R
 \name{arraystrconversion}
 \alias{arraystrconversion}
-\title{Convert an array of strings with measurements of length}
+\title{Convert an array or vector of strings with measurements of length}
 \usage{
 arraystrconversion(old, newunit = "meter", returnstring = FALSE)
 }
 \arguments{
-\item{old}{Array of strings with values with unit at the end}
+\item{old}{Array/Vector of strings with values with unit at the end}
 
 \item{newunit}{Unit of return value, default is meters}
 
 \item{returnstring}{TRUE:return is string with unit name at the end, FALSE: return is numeric data}
 }
 \value{
-Converted array of values
+Converted array/vector of values
 }
 \description{
-Possible units: "twip", "thou", "inch", "hand", "foot", "yard", "chain", "furlong", "mile", "league", "millimeter", "centimeter", "meter", "kilometer" or "twip", "th", "in", "hh", "ft", "yd", "ch", "fur", "mi", "lea", "mm", "cm", "m", "km"
-Plurals "-s" and spaces in the string will be ignored
+Possible units: "twip", "thou", "inch", "hand", "foot", "yard", "chain", "furlong", "mile", "league", "millimeter", "centimeter", "meter", "kilometer" or "twip", "th", "in", "hh", "ft", "yd", "ch", "fur", "mi", "lea", "mm", "cm", "m", "km".
+Plural "-s" and spaces in the string will be ignored
 }
 \examples{
 arraystrconversion(c("5yd","6ft"),"mi")

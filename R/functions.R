@@ -45,19 +45,19 @@ conversion <- function(value, oldunit, newunit="meter") {
 
 #-----------------------------------------------------------------------
 
-# Arrayconversion can convert multiple measurements of length, input an array of numeric,
+# Arrayconversion can convert multiple measurements of length, input an array or vector of numeric,
 # the old and the new unit.
 # Per default, values will be converted to meters.
 
-#' Convert an array of measurements of length
+#' Convert an array or vector of measurements of length
 #'
 #' @description
 #' Possible units: "twip", "thou", "inch", "hand", "foot", "yard", "chain", "furlong", "mile", "league", "millimeter", "centimeter", "meter", "kilometer" or "twip", "th", "in", "hh", "ft", "yd", "ch", "fur", "mi", "lea", "mm", "cm", "m", "km"
 #'
-#' @param value Array of values to convert
+#' @param value Array/Vector of values to convert
 #' @param oldunit Unit of the value to convert ("twip", "thou", "inch", "hand", "foot", "yard", "chain", "furlong", "mile", "league", "millimeter", "centimeter", "meter", "kilometer" or "twip", "th", "in", "hh", "ft", "yd", "ch", "fur", "mi", "lea", "mm", "cm", "m", "km")
 #' @param newunit Unit of return value, default is meters
-#' @return Converted array of values
+#' @return Converted array/vector of values
 #' @export
 #' @examples
 #' arrayconversion(c(5,10,15),"yd","mi")
@@ -67,7 +67,11 @@ arrayconversion <- function(value, oldunit, newunit="meter"){
   for (x in value){
     new <- c(new, conversion(x,oldunit, newunit))
   }
-  return(new)
+  if(is.null(dim(value))==TRUE) {
+    return(new)
+  } else {
+    return(array(new,dim=dim(value)))
+  }
 }
 
 #-----------------------------------------------------------------------
@@ -80,8 +84,8 @@ arrayconversion <- function(value, oldunit, newunit="meter"){
 #' Convert a string with measurements of length
 #'
 #' @description
-#' Possible units: "twip", "thou", "inch", "hand", "foot", "yard", "chain", "furlong", "mile", "league", "millimeter", "centimeter", "meter", "kilometer" or "twip", "th", "in", "hh", "ft", "yd", "ch", "fur", "mi", "lea", "mm", "cm", "m", "km"
-#' Plurals "-s" and spaces in the string will be ignored
+#' Possible units: "twip", "thou", "inch", "hand", "foot", "yard", "chain", "furlong", "mile", "league", "millimeter", "centimeter", "meter", "kilometer" or "twip", "th", "in", "hh", "ft", "yd", "ch", "fur", "mi", "lea", "mm", "cm", "m", "km".
+#' Plural "-s" and spaces in the input will be ignored
 #'
 #' @param old String of values with unit at the end
 #' @param newunit Unit of return value, default is meters
@@ -127,20 +131,20 @@ strconversion <- function(old, newunit="meter", returnstring=FALSE) {
 #-----------------------------------------------------------------------
 
 # Arraystrconversion can convert multiple measurements of length, input an
-# Array of strings with the Value and unit and choose if the output should be a numeric
+# Array or vector of strings with the Value and unit and choose if the output should be a numeric
 # or a string with value and unit as well. Plural -s will be ignored.
 # Per default, values will be converted to meters.
 
-#' Convert an array of strings with measurements of length
+#' Convert an array or vector of strings with measurements of length
 #'
 #' @description
-#' Possible units: "twip", "thou", "inch", "hand", "foot", "yard", "chain", "furlong", "mile", "league", "millimeter", "centimeter", "meter", "kilometer" or "twip", "th", "in", "hh", "ft", "yd", "ch", "fur", "mi", "lea", "mm", "cm", "m", "km"
-#' Plurals "-s" and spaces in the string will be ignored
+#' Possible units: "twip", "thou", "inch", "hand", "foot", "yard", "chain", "furlong", "mile", "league", "millimeter", "centimeter", "meter", "kilometer" or "twip", "th", "in", "hh", "ft", "yd", "ch", "fur", "mi", "lea", "mm", "cm", "m", "km".
+#' Plural "-s" and spaces in the input will be ignored
 #'
-#' @param old Array of strings with values with unit at the end
+#' @param old Array/Vector of strings with values with unit at the end
 #' @param newunit Unit of return value, default is meters
 #' @param returnstring TRUE:return is string with unit name at the end, FALSE: return is numeric data
-#' @return Converted array of values
+#' @return Converted array/vector of values
 #' @export
 #' @examples
 #' arraystrconversion(c("5yd","6ft"),"mi")
@@ -150,7 +154,11 @@ new <- c()
   for (x in old){
     new <- c(new, strconversion(x,newunit,returnstring))
   }
-  return(new)
+  if(is.null(dim(old))==TRUE) {
+    return(new)
+  } else {
+    return(array(new,dim=dim(old)))
+  }
 }
 
 #-----------------------------------------------------------------------
