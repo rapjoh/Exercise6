@@ -1,7 +1,7 @@
 Package: Exercise6
 Type: Package
 Title: Converting measurements of length
-Version: 0.1.0
+Version: 0.1.1
 Author: Raphael John (12548296)
 Maintainer: Raphael John <r.john@campus.lmu.de>
 Description: Converting measurements of length (metric and imperial). 
@@ -12,6 +12,11 @@ Description: Converting measurements of length (metric and imperial).
   output should be a numeric or a string with value and unit as well.
   Arraystrconversion - input an array of Strings with the Value and unit and 
   choose if the output should be a numeric or a string with value and unit as well.
+  The following units are possible -
+  "twip", "thou", "inch", "hand", "foot", "yard", "chain", "furlong", "mile", 
+  "league", "millimeter", "centimeter", "meter", "kilometer"
+  And the following abbreviations can also be used - 
+  "twip", "th", "in", "hh", "ft", "yd", "ch", "fur", "mi", "lea", "mm", "cm", "m", "km"
 License: 
 Encoding: UTF-8
 LazyData: true
